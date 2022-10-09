@@ -1,0 +1,329 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*drop filter option*/
+.dropbtn{
+    position:relative; 
+    top:2px; 
+    height: 17px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top:36px;
+    left:-20px;
+    max-height: 240px;
+    background-color: #e6d9e6;
+    border-radius: 4px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    cursor:pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-content a i{
+    display: none;
+    color: blue;
+}
+
+.triangle{
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #e6d9e6;;
+    top:-10px;
+    left:15px;
+}
+  
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/*toll , delete, notification popup alert*/
+.alertTag{
+    color:rgb(214, 37, 37);
+    font-weight:normal;
+    display: none;
+}
+
+.alert {
+    display:none;
+    position: fixed;
+    top:2px;
+    left:25%;
+    width:50%;
+    padding: 15px 15px 5px 15px;
+    border-radius:8px;
+    background-color: #6facca;
+    text-align:center;
+    color: white;
+    opacity: 1;
+    transition: opacity 5.5s;
+  }
+  
+  .alertClosebtn {
+    border: none;
+    margin:10px;
+    padding:5px 10px;
+    border-radius:5px;
+    transition: 5.5s;
+    cursor:pointer;
+    background-color:rgb(116, 107, 203);
+    color:white;
+    font-weight: bold;
+  }
+  
+.deleteAlert {
+    display:none;
+    position: fixed;
+    top:2px;
+    left:25%;
+    width:50%;
+    padding: 15px 15px 5px 15px;
+    border-radius:8px;
+    background-color: #e17436;
+    text-align:center;
+    color: white;
+    opacity: 1;
+    transition: opacity 1s;
+  }
+  
+  .deleteBtn1,.deleteBtn2 {
+    border: none;
+    margin:10px;
+    padding:5px 10px;
+    border-radius:5px;
+    transition: 1s;
+    cursor:pointer;
+    background-color:rgb(19, 67, 179);
+    color:white;
+  }
+  .deleteBtn1{
+    background-color:rgb(254, 28, 28);
+  }
+
+/*toll and entry form*/
+.form-popup,
+.form-popup2 {
+    display: none;
+    position: absolute;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 65%;
+    height: 85%;
+    position: fixed;
+    border: 2px solid #efe6e6;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.form-container {
+    box-shadow: 9px 8px 16px 2px rgba(0.8,0.8,0.8,0.8);
+    height:100%;
+    background-color: #ffffff !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 15px;
+    background-color: white;
+    overflow: scroll;
+}
+
+.form-container input[type=text] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.form-container .btn {
+background-color: #1267c1;
+border-radius: 3px;
+color: white;
+padding: 8px 20px;
+border: none;
+cursor: pointer;
+margin-top: 10px;
+width: 100%;
+margin-bottom:10px;
+opacity: 0.8;
+}
+
+.entry-cancel,
+.toll-cancel {
+position:absolute;
+right:10px;
+top:10px;
+background-color: white;
+color:grey;
+border:0;
+font-weight: bold;
+font-size:130%;
+cursor: pointer;
+}
+.vehicleLabel{
+    margin-bottom: 7px;
+}
+.form-container .btn:hover, .open-button:hover {
+opacity: 1;
+}
+
+.red{
+color:red;
+}
+.headline{
+text-align:center;
+font-size: 130%;
+}
+
+.vehicleFare{
+display:flex; 
+justify-content:space-between;
+}
+.fareData{
+width:30%;
+padding: 8px 4px;
+border:1px solid grey;
+border-radius: 5px;
+}
+.entryData{
+    width:100%;
+    margin-top:6px;
+    padding: 8px 4px;
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+.fa-filter{
+    color:grey;
+}
+.myInput {
+    background-image: url('/img/searchicon.png');
+    background-size: 14px 14px;
+    background-position: 10px 5px;
+    background-repeat: no-repeat;
+    width: 200px;
+  border-radius:20px;
+    font-size: 90%;
+    padding: 4px 4px 4px 30px;
+    border: 1px solid rgb(185, 171, 171);
+    margin: 5px 5px 5px 5px;
+  }
+
+/*title and entries and tolls action button*/
+.tollbtn,
+.add-toll,
+.add-entry{
+    border:none;
+    background-color: #3375e6;
+    color:white;
+    padding: 5px 10px;
+    border-radius:5px;
+    margin:5px 5px 5px 5px;
+    cursor: pointer;
+}
+.entriesAction{
+    display: flex;
+    justify-content: space-between;
+    margin:0px 5px;
+}
+.title{
+    font-size:110%;
+    padding:5px;
+}
+
+.not-allowed{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
+/*tolls or entries table*/
+.tollsEntries {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 98%;
+    margin: 3% 1%;
+    font-size:65%;
+  }
+  
+.tollsEntries td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    font-size: 110%;
+}
+
+.tollsEntries tr:hover {
+    background-color: #ddd;
+}
+
+.tollsEntries th {
+    text-transform: uppercase;
+    font-size: 110%;
+    font-weight: bold;
+    padding: 3px 8px;
+    text-align: left;
+    background-color: grey;
+    color: white;
+}
+.deleteIcon{
+    cursor: pointer;
+    width: 10px;
+}
+
+.no-found {
+    font-size:160%; 
+    text-align:center; 
+    padding:8vh;
+}
+
+.lightgrey {
+    color: rgb(190, 174, 174);
+}
+
+.tolls{
+    display: none;
+}
+
+/*scrollbar*/
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+    
+::-webkit-scrollbar-thumb {
+    background: rgb(105, 90, 90);
+    border-radius: 10px;
+}
+    
+::-webkit-scrollbar-thumb:hover {
+    background: #000000;
+}

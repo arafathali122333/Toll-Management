@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Toll Management</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="title">Toll Management Application</div>
+        <hr>
+        <!--Tolls/Entries Action Element-->
+        <div class="entriesAction">
+            <div class="entries">
+                <b>Toll entries/Vehicle entries</b> &ensp;<span class="lightgrey">|</span> &ensp;
+                       <div class="dropdown" onclick="dropTolls()">
+                            <img src="img/filter.png" class="dropbtn" />
+                            <div class="dropdown-content"></div>
+                       </div>
+                       &ensp; <input type="text" class="myInput" id="searchVehicle"  placeholder="Search vehicle number" onkeyup="filterVehicle(this)">
+            </div>
+            <div class="tolls">
+                <b>Tollgate List</b> &ensp;<span class="lightgrey">|</span>&ensp;<input type="text" class="myInput" id="searchTollAction"  placeholder="Search a toll" onkeyup="searchToll(this)">
+            </div>
+            <div>
+                <button class="add-entry" onclick="openForm(this)">Add vehicle entry</button>
+                <button class="add-toll" onclick="openForm(this)">Add new toll</button>
+                <button class="tollbtn" onclick="tollOrEntry(this)">View all tolls</button>&ensp;
+            </div>
+        </div>
+
+        <!--Popup window add new toll-->
+        <div class="form-popup">
+            <form class="form-container"  onsubmit="addNewToll(event)">
+            <div class="headline">Add New Toll</div>
+
+            <div>
+            <label><b>Toll Name <span class="red">*</span></b></label>
+            <input type="text" placeholder="Enter Toll Name" name="tollName" pattern=".*\S+.*" onkeyup="tollChecker(this)" required>
+            <span class="alertTag">⚠️ This toll is already found</span>
+            </div>
+            
+            <div>
+                <div class="vehicleLabel"><label for="vehicle"><b>Vehicle fare details <span class="red">*</span></b></label></div>
+                <div class="vehicleFare">
+                    <select name="vehicleType1" id="0vehicle" class="fareData" onchange="resVTC(this)" required>
+                        <option value="">Select vehicle type</option>
+                        <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                        <option value="LCV">LCV</option>
+                        <option value="Truck/Bus">Truck/Bus</option>
+                        <option value="Heavy vehicle">Heavy vehicle</option>
+                    </select>
+                    <input class="fareData" type="number" placeholder="Single Journey" onkeyup="negativeValRemover(event)" name="singleJourney1" required>
+                    <input class="fareData" type="number" placeholder="Return Journey" onkeyup="negativeValRemover(event)" name="returnJourney1" required>
+                </div>
+            </div>
+            <div class="vehicleFare">
+                <select name="vehicleType2" id="1vehicle" class="fareData" onchange="resVTC(this)" required>
+                    <option value="">Select vehicle type</option>
+                    <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                    <option value="LCV">LCV</option>
+                    <option value="Truck/Bus">Truck/Bus</option>
+                    <option value="Heavy vehicle">Heavy vehicle</option>
+                    </select>
+                <input class="fareData" type="number" placeholder="Single Journey" onkeyup="negativeValRemover(event)" name="singleJourney2" required>
+                <input class="fareData" type="number" placeholder="Return Journey" onkeyup="negativeValRemover(event)" name="returnJourney2" required>
+            </div>
+            <div class="vehicleFare">
+                <select name="vehicleType3" id="2vehicle" class="fareData" onchange="resVTC(this)" required>
+                    <option value="">Select vehicle type</option>
+                    <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                    <option value="LCV">LCV</option>
+                    <option value="Truck/Bus">Truck/Bus</option>
+                    <option value="Heavy vehicle">Heavy vehicle</option>
+                    </select>
+                <input class="fareData" type="number" placeholder="Single Journey" onkeyup="negativeValRemover(event)" name="singleJourney3" required>
+                <input class="fareData" type="number" placeholder="Return Journey" onkeyup="negativeValRemover(event)" name="returnJourney3" required>
+            </div>
+            <div class="vehicleFare">
+                <select name="vehicleType4" id="3vehicle" class="fareData" onchange="resVTC(this)" required>
+                    <option value="">Select vehicle type</option>
+                    <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                    <option value="LCV">LCV</option>
+                    <option value="Truck/Bus">Truck/Bus</option>
+                    <option value="Heavy vehicle">Heavy vehicle</option>
+                </select>
+                <input class="fareData" type="number" placeholder="Single Journey" onkeyup="negativeValRemover(event)" name="singleJourney4" required>
+                <input class="fareData" type="number" placeholder="Return Journey" onkeyup="negativeValRemover(event)" name="returnJourney4" required>
+            </div>
+            <button type="submit" class="btn">Add Details</button>
+            <button type="button" class="toll-cancel" onclick="closeForm(this)"><i class="fa fa-close"></i></button>
+            </form>
+        </div>
+
+        <!--Popup window add new entry-->
+        <div class="form-popup2">
+            <form class="form-container" onchange="tariffChange()" onsubmit="addNewEntry(event)" >
+            <div class="headline">Add New Entry</div>
+
+            <div>
+                <label><b>Select toll name <span class="red">*</span></b></label>
+                <select name="tollName" class="entryData" id="tollNameSelect" required></select>
+            </div>
+
+            <div>
+                <label><b>Select vehicle type <span class="red">*</span></b></label>
+                <select name="vehicleType" class="entryData" id="vehicleType" required>
+                    <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                    <option value="LCV">LCV</option>
+                    <option value="Truck/Bus">Truck/Bus</option>
+                    <option value="Heavy vehicle">Heavy vehicle</option>
+                </select>
+            </div>
+
+            <div>
+                <label><b>Vehicle Number <span class="red">*</span></b></label>
+                <input type="text" placeholder="Enter your vehicle number" name="vehicleNumber" id="vehicleNumber" onkeyup="tariffChange()" pattern=".*\S+.*" required>
+            </div>
+
+            <div>
+                <label><b>Tariff <span class="red">*</span></b></label>
+                <input type="number" placeholder="Tariff amount" name="tariff" class="not-allowed" disabled required>
+            </div>
+
+            <button type="submit" class="btn">Add Entry</button>
+            <button type="button" class="entry-cancel" onclick="closeForm(this)"><i class="fa fa-close"></i></button>
+            </form>
+        </div>
+        <!--Alert Popup-->
+        <div class="alert">
+            <div id="alertMsg"></div>
+            <button class="alertClosebtn">ok</button>
+          </div>
+          <!--Delete Alert Popup-->
+          <div class="deleteAlert">
+            <div id="deleteAlertMsg"></div>
+            <button class="deleteBtn1">Yes</button>
+            <button class="deleteBtn2">No</button>
+          </div>
+        <!--Entries/Tolls Table-->
+        <table class="tollsEntries"></table>
+        <!--add tolls,initialize data, open/close form and some action-->
+        <script src="script/initialAddtoll.js"></script>
+        <!--addEntry and Tariff changes-->
+        <script src="script/addTableEntry.js"></script>
+        <!--filter records, show toll/entry and modifier-->
+        <script src="script/filterModifier.js"></script>
+        <!--Alertbox and Popup-->
+        <script src="script/deleteTollPopup.js"></script>
+    </body>
+</html>
